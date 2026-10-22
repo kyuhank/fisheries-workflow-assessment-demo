@@ -12,22 +12,14 @@ Render the saved assessment comparison as a Quarto report. The report describes 
 
 Biomass is reported as B/K and catches in tonnes. Growth and initial depletion are fixed sensitivity assumptions; convergence does not establish real-stock validity or uncertainty.
 
-From the repository root, run this job and prepare any required inputs:
+Supply this job's saved upstream results in a context JSON, then run from the repository root:
 
 ```sh
-make job JOB=assessment_report
+make run JOB=assessment_report CONTEXT=/absolute/context.json OUT=/absolute/result
 ```
 
-[run.R](run.R) is the entry point. It receives the coordinator’s named
-`context` and uses the recorded shared libraries; a copied script is not standalone.
-See the [job guide](../README.md#run-and-inspect-a-job) for container and output options.
-
-| Saved file | Contents |
-| --- | --- |
-| `runs/assessment_report/output.json` | saved calculation result |
-| `runs/assessment_report/report.html` | result page from [report.qmd](report.qmd) |
-| `runs/assessment_report/record.json` | producing inputs, settings, exact code and software |
-
-**Used by:** None.
+[run.R](run.R) defines `calculate(context)`; the component adapter loads its local R
+library and writes `response.json` with `result` and `effects`. See the
+[job guide](../README.md) for context fields, runtime selection and saved-result rendering.
 
 [Saved report](https://kyuhank.github.io/fisheries-workflow-demo/example/assessment_report/report.html) · [Run record](https://kyuhank.github.io/fisheries-workflow-demo/example/assessment_report/record.json)

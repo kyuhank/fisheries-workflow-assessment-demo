@@ -1,0 +1,27 @@
+{
+  "key": "assessment_a1",
+  "settings": {},
+  "job_settings": {},
+  "run_id": "standalone-example",
+  "parents": {
+    "prepare_a": {
+      "rows": [
+        {
+          "year": 2020,
+          "index": 1,
+          "catch_t": 100
+        },
+        {
+          "year": 2021,
+          "index": 0.9,
+          "catch_t": 110
+        },
+        {
+          "year": 2022,
+          "index": 0.8,
+          "catch_t": 120
+        }
+      ]
+    }
+  }
+}

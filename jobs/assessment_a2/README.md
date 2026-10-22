@@ -6,28 +6,20 @@ Fit the toy Schaefer model to index A with the selected fixed intrinsic growth a
 
 **Inputs:** Joined index and catch `rows` in `runs/prepare_a/output.json`.
 
-**From:** [Prepare inputs A (`prepare_a`)](../prepare_a/README.md).
+**From:** [Prepare inputs A (`prepare_a`)](https://github.com/kyuhank/fisheries-workflow-assessment-demo/tree/main/jobs/prepare_a).
 
 **Settings:** `growth_rate_2` saved as `r` (default: 0.30; choices: 0.25, 0.30, 0.35).
 
 Biomass is reported as B/K and catches in tonnes. Growth and initial depletion are fixed sensitivity assumptions; convergence does not establish real-stock validity or uncertainty.
 
-From the repository root, run this job and prepare any required inputs:
+Supply this job's saved upstream results in a context JSON, then run from the repository root:
 
 ```sh
-make job JOB=assessment_a2
+make run JOB=assessment_a2 CONTEXT=/absolute/context.json OUT=/absolute/result
 ```
 
-[run.R](run.R) is the entry point. It receives the coordinator’s named
-`context` and uses the recorded shared libraries; a copied script is not standalone.
-See the [job guide](../README.md#run-and-inspect-a-job) for container and output options.
-
-| Saved file | Contents |
-| --- | --- |
-| `runs/assessment_a2/output.json` | saved calculation result |
-| `runs/assessment_a2/report.html` | result page from [shared renderer](../../workflow/reports.py) |
-| `runs/assessment_a2/record.json` | producing inputs, settings, exact code and software |
-
-**Used by:** [Compare assessments (`assessment_summary`)](../assessment_summary/README.md), [Prepare MSE (`mse_prepare`)](../mse_prepare/README.md).
+[run.R](run.R) defines `calculate(context)`; the component adapter loads its local R
+library and writes `response.json` with `result` and `effects`. See the
+[job guide](../README.md) for context fields, runtime selection and saved-result rendering.
 
 [Saved report](https://kyuhank.github.io/fisheries-workflow-demo/example/assessment_a2/report.html) · [Run record](https://kyuhank.github.io/fisheries-workflow-demo/example/assessment_a2/record.json)

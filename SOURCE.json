@@ -17,5 +17,14 @@
     "sha256": "c807989ab5de3da1d4ac44cd7e11d84b2eee5d112c2ea74b481f896457abdf06",
     "baseline_path": "workflow/r/models.R",
     "baseline_lines": "66-173"
-  }
+  },
+  "dependencies": [
+    {
+      "path": "R/common.R",
+      "repository": "https://github.com/kyuhank/fisheries-workflow-demo",
+      "commit": "0182140326a748a5eae848e9a1e7e568d65bc337",
+      "source_path": "workflow/r/common.R",
+      "sha256": "4befb1217f341840864249e30182819e3452c685dd30267c0f6bb7f3870b912d"
+    }
+  ]
 }

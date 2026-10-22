@@ -6,26 +6,18 @@ Join CPUE index B to annual catches by year and reject an index year without a m
 
 **Inputs:** The index `series` in `runs/cpue_b/output.json` and annual `catch` in `runs/extract/output.json`.
 
-**From:** [Extract data (`extract`)](../extract/README.md), [CPUE analysis B (`cpue_b`)](../cpue_b/README.md).
+**From:** [Extract data (`extract`)](https://github.com/kyuhank/fisheries-workflow-cpue-demo/tree/main/jobs/extract), [CPUE analysis B (`cpue_b`)](https://github.com/kyuhank/fisheries-workflow-cpue-demo/tree/main/jobs/cpue_b).
 
 **Settings:** No job-specific settings (`{}`).
 
-From the repository root, run this job and prepare any required inputs:
+Supply this job's saved upstream results in a context JSON, then run from the repository root:
 
 ```sh
-make job JOB=prepare_b
+make run JOB=prepare_b CONTEXT=/absolute/context.json OUT=/absolute/result
 ```
 
-[run.R](run.R) is the entry point. It receives the coordinator’s named
-`context` and uses the recorded shared libraries; a copied script is not standalone.
-See the [job guide](../README.md#run-and-inspect-a-job) for container and output options.
-
-| Saved file | Contents |
-| --- | --- |
-| `runs/prepare_b/output.json` | saved calculation result |
-| `runs/prepare_b/report.html` | result page from [shared renderer](../../workflow/reports.py) |
-| `runs/prepare_b/record.json` | producing inputs, settings, exact code and software |
-
-**Used by:** [Assessment B1 (`assessment_b1`)](../assessment_b1/README.md), [Assessment B2 (`assessment_b2`)](../assessment_b2/README.md).
+[run.R](run.R) defines `calculate(context)`; the component adapter loads its local R
+library and writes `response.json` with `result` and `effects`. See the
+[job guide](../README.md) for context fields, runtime selection and saved-result rendering.
 
 [Saved report](https://kyuhank.github.io/fisheries-workflow-demo/example/prepare_b/report.html) · [Run record](https://kyuhank.github.io/fisheries-workflow-demo/example/prepare_b/record.json)

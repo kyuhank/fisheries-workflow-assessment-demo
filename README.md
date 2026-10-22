@@ -11,15 +11,19 @@ abundance measure. Initial biomass, fixed growth and the simple Schaefer model
 are teaching assumptions; case differences are not an uncertainty interval or
 stock-management advice.
 
-Run through the coordinator in its recorded container, for example:
+Run a supplied context with host R (jsonlite), Make and Docker:
 
 ```sh
-make job JOB=assessment_a1
+make runtime JOB=assessment_a1
+make run JOB=assessment_a1 CONTEXT="$PWD/examples/context.json" OUT=/absolute/new-result
 ```
 
-Each job receives a named `context`; its entry point is not standalone. See
-`jobs/*/README.md` for input connections. The report reads saved results without
-refitting, shows the biomass comparison, and retains fit checks and source records.
+The repository's Makefile launches the job in its selected image. Numerical code is
+in [R/assessment.R](R/assessment.R) and [jobs/](jobs/README.md). `response.json` contains the
+result and declared workflow effects; runtime and execution JSON files identify
+the image and software actually used. See the [job guide](jobs/README.md) for
+input fields and rendering saved results. The small synthetic example illustrates
+the adapter interface; use recorded upstream outputs for an actual workflow.
 
 [SOURCE.json](SOURCE.json) records the calculation library's baseline origin and
 SHA-256. The R library and calculation entry points retain those source bytes;
